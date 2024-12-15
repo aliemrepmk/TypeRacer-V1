@@ -53,7 +53,7 @@ If you use **VS Code**, you can run the project using the **Live Server** extens
 - [x] Implement core gameplay mechanics.
 - [x] Add scoring system.
 - [x] Fetch the words using API.
-- [ ] Add colorization to words.
+- [x] Add colorization to words.
 - [ ] Add jittering effect to words.
 - [ ] Add mobile support for touch-based controls.
 - [ ] Improve performance (optimization).
