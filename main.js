@@ -89,6 +89,16 @@ function updateLastSpawnedWords(newWord) {
     }
 }
 
+function getJitter(x, canvasWidth) {
+    if (x < canvasWidth / 3) {
+        return Math.random() * 2 - 1; // Jitter in range ±1 pixels
+    } else if (x < (2 * canvasWidth) / 3) {
+        return Math.random() * 4 - 2; // Jitter in range ±2 pixels
+    } else {
+        return Math.random() * 8 - 4; // Jitter in range ±4 pixels
+    }
+}
+
 // Draw Words with Colorization
 function drawWords() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -102,6 +112,7 @@ function drawWords() {
   words.forEach(word => {
       // Determine the color based on the word's x-coordinate
       let color;
+
       if (word.x < canvas.width / 3) {
           color = 'yellow'; // Left section
       } else if (word.x < (2 * canvas.width) / 3) {
@@ -110,10 +121,13 @@ function drawWords() {
           color = 'red'; // Right section
       }
 
+      // Get jitter value using the jitter function
+      const jitter = getJitter(word.x, canvas.width);
+
       // Draw the word with the assigned color
       ctx.font = '20px Arial';
       ctx.fillStyle = color;
-      ctx.fillText(word.text, word.x, word.y);
+      ctx.fillText(word.text, word.x, word.y + jitter);
 
       // Move the word to the right
       word.x += speed;
